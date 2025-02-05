@@ -1,0 +1,4 @@
+pandas
+docker
+tableschema
+sqlalchemy

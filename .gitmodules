@@ -1,0 +1,3 @@
+[submodule "plog"]
+	path = plog
+	url = git@github.com:Ilyass-Bougati/plog.git
