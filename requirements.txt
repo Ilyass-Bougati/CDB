@@ -1,4 +1,2 @@
 pandas
-docker
-tableschema
-sqlalchemy
+python-dotenv

@@ -2,13 +2,16 @@ import pandas as pd
 from utils.types import pg_type
 from utils.database_con import DBConnection
 from plog.plog import Logger
-import csv
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class Reader:
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.db_cols = []
-        self.table_name = file_path.split("/")[-1].split(".")[0]
+        self.table_name = os.getenv("TABLE_NAME")
         self.logger = Logger("Reader")
 
         # reading the databse columns
@@ -18,8 +21,8 @@ class Reader:
         self.db_conn = DBConnection(
             "localhost",
             self.table_name,
-            "postgres",
-            "root",
+            os.getenv("POSTGRES_USER"),
+            os.getenv("POSTGRES_PASSWORD"),
             "5432"
         )
 

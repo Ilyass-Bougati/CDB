@@ -10,33 +10,26 @@ class DBConnection:
         self.user = user
         self.password = password
         self.port = port
-        try:
-            self.logger.Info(f"Connecting to {uri}:{port}")
-            self.conn = psycopg2.connect(
-                database="postgres",
-                host=uri,
-                user=user,
-                password=password,
-                port=port
-            )
-        except Exception:
-            self.logger.Error("Error connecting to db")
-            exit(1)
+
+        self.logger.Info(f"Connecting to {uri}:{port}")
+        self.conn = psycopg2.connect(
+            database="postgres",
+            host=uri,
+            user=user,
+            password=password,
+            port=port
+        )
 
 
     def set_cols(self, db_cols: list) -> None:
         self.db_cols = db_cols
 
         # Creating the table
-        try:
-            cursor = self.conn.cursor()
-            query = f"CREATE TABLE {self.db_name}("
-            for col in self.db_cols:
-                query += f"{col[0]} {col[1]},"
+        cursor = self.conn.cursor()
+        query = f"CREATE TABLE {self.db_name}("
+        for col in self.db_cols:
+            query += f"{col[0]} {col[1]},"
 
-            cursor.execute(query[:-1] + ")")
-            self.conn.commit()
-            self.logger.Info(f"Created Table {self.db_name}")
-        except:
-            self.logger.Error("Couldn't create the table")
-            exit(1)
+        cursor.execute(query[:-1] + ")")
+        self.conn.commit()
+        self.logger.Info(f"Created Table {self.db_name}")
