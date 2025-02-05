@@ -20,3 +20,9 @@ Since I've used one submodule [plog](https://github.com/Ilyass-Bougati/plog) you
 ```bash
 git clone --recursive git@github.com:Ilyass-Bougati/CDB.git
 ```
+
+# Usage
+running the program after setting things up, is as easy as it could get
+```bash
+python cdb.py filepath
+```
