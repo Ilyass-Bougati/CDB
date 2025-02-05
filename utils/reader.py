@@ -64,7 +64,7 @@ class Reader:
                         values += f"'{val}'"
 
                     values += ","
-
+                    self.logger.Good("User Inserted")
                 try:
                     query = f"INSERT INTO {self.table_name} VALUES ({values[:-1]})"
                     cursor.execute(query)
@@ -72,7 +72,6 @@ class Reader:
                 except:
                     self.logger.Warn(f"Error inserting, {str(row)[1:-1]}")
 
-                print(f"{i}", end="\r")
-                i += 1
+                
                 
                 
