@@ -52,9 +52,10 @@ class Reader:
         # Reading line by line
         cursor = self.db_conn.conn.cursor()
 
-        chunk_size = 1_000_000  # Process 100k rows at a time  
+        chunk_size = 10000  # Process 100k rows at a time  
         i = 0
         for chunk in pd.read_csv(self.file_path, chunksize=chunk_size):
+            query = f"INSERT INTO {self.table_name} VALUES "
             for index, row in chunk.iterrows():
                 values = ""
                 for val in row.tolist():
@@ -65,9 +66,10 @@ class Reader:
 
                     values += ","
 
-                query = f"INSERT INTO {self.table_name} VALUES ({values[:-1]})"
-                cursor.execute(query)
-                self.db_conn.conn.commit()
+                query += f"({values[:-1]}),\n"
+            cursor.execute(query[:-2])
+            self.db_conn.conn.commit()
+            self.logger.Good("Commited")
             
 
                 
