@@ -33,3 +33,5 @@ class DBConnection:
         cursor.execute(query[:-1] + ")")
         self.conn.commit()
         self.logger.Info(f"Created Table {self.db_name}")
+        self.logger.Info(f"Schema:\n {query[:-1] + ")"}")
+

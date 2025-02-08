@@ -59,18 +59,16 @@ class Reader:
                 values = ""
                 for val in row.tolist():
                     try:
-                        values += str(val) if (int(val) == val or float(val) == val) else f"'{val}'"
+                        values += str(val) if (int(val) == val or float(val) == val) else f"'{val.replace("'"," ")}'"
                     except:
-                        values += f"'{val}'"
+                        values += f"'{val.replace("'"," ")}'"
 
                     values += ","
-                    self.logger.Good("User Inserted")
-                try:
-                    query = f"INSERT INTO {self.table_name} VALUES ({values[:-1]})"
-                    cursor.execute(query)
-                    self.db_conn.conn.commit()
-                except:
-                    self.logger.Warn(f"Error inserting, {str(row)[1:-1]}")
+
+                query = f"INSERT INTO {self.table_name} VALUES ({values[:-1]})"
+                cursor.execute(query)
+                self.db_conn.conn.commit()
+            
 
                 
                 
