@@ -1,7 +1,7 @@
 from sqlalchemy import Integer, String, Float, DateTime
 
 types: dict = {
-    "int64": "INT",
+    "int64": "BIGINT",
     "object": "VARCHAR",
     "float64": "FLOAT",
     "datetime": "TIMESTAMP"
