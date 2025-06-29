@@ -15,7 +15,7 @@ TABLE_NAME=...
 ```
 
 # Database
-If you don't have postgres installed, you can use [docker](https://www.docker.com/)
+If you don't have postgres installed, you can use [docker](https://www.docker.com/), and run the following command to start a postgresql container
 ```bash
 docker compose up
 ```
